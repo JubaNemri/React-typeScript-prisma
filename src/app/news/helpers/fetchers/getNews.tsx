@@ -1,4 +1,4 @@
-export const getNews = async () => {
+export const fetchGetNews = async () => {
     try {
         const res = await fetch('/api/news', {
             method: 'GET',

@@ -9,14 +9,10 @@ import {
     DrawerContent,
 } from '@chakra-ui/react'
 
-
-interface props {
-    isOpen: boolean 
-    onOpen: () => void
-    onClose :() => void
-}
 const SideNav = () => {
-    const { isOpen ,onOpen ,onClose }:props = useDisclosure() 
+
+    const { isOpen ,onOpen ,onClose } = useDisclosure();
+
     return (
 
         <Box padding="10">

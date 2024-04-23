@@ -1,19 +1,19 @@
-import { getNews } from "../helpers/getters/getNews";
+import { fetchGetNews } from "../helpers/fetchers/getNews";
 import { Button, FormLabel, FormControl, Input, Text, Box, Square, Center, useDisclosure, Flex, ChakraProvider, IconButton } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useEffect ,useState } from "react";
 import { Dispatch, SetStateAction } from "react";
-import { deleteNews } from '../helpers/setters/deleteNews';
+import { fetchDeleteNews } from '../helpers/fetchers/deleteNews';
 import { News , Props_ForNewsBox} from '../../types/news'
 
 
 
-const NewsBox = ({ news, setMyNews, setEditNews , setIsOpen ,setIsAdd  }: Props_ForNewsBox) => {
+const NewsBox = ({ news, setNews, setEditNews , setIsOpen ,setIsAdd  }: Props_ForNewsBox) => {
   
     useEffect(() => {
         const fetchNews = async () => {
-        const fetchedNews = await getNews()
-        setMyNews(fetchedNews)
+        const fetchedNews = await fetchGetNews()
+        setNews(fetchedNews)
         console.log(fetchedNews)
       }
       fetchNews();
@@ -41,7 +41,7 @@ const NewsBox = ({ news, setMyNews, setEditNews , setIsOpen ,setIsAdd  }: Props_
                   icon={<DeleteIcon />}
                   onClick={
                     async () => { 
-                  await deleteNews( singleNews.id  , setMyNews ) }}
+                  await fetchDeleteNews( singleNews.id  , setNews ) }}
               />
               </Flex>
             </Flex>

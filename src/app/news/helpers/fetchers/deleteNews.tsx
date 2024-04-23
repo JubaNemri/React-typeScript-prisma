@@ -1,13 +1,13 @@
 import { News } from "@/app/types/news";
 import { Dispatch, SetStateAction } from "react";
 
-export const deleteNews = async (id: number, setMyNews: Dispatch<SetStateAction<News[]>>) => {
+export const fetchDeleteNews = async (id: number, setNews: Dispatch<SetStateAction<News[]>>) => {
     try {
         const response = await fetch(`/api/news/${id}`, {
             method: 'DELETE'
         });
 
-        setMyNews((prev: News[]) => {
+        setNews((prev: News[]) => {
             let update: News[] = [...prev];
             update = update.filter(news => news.id !== id);
             return update;

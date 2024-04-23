@@ -1,20 +1,20 @@
 import { Props_ForSetNews, News } from "@/app/types/news";
 
-export const updateNews = async (id: number, { newNewsName, setNewNewsName, onClose, setMyNews }: Props_ForSetNews) => {
+export const fetchUpdateNews = async (id: number, { newsNameValue, setNewsNameValue, onClose, setNews }: Props_ForSetNews) => {
   try {
     const response = await fetch(`/api/news/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newNewsName),
+      body: JSON.stringify(newsNameValue),
     });
     if (!response.ok) {
       throw new Error('Error updating news');
     }
     const result = await response.json();
 
-    setMyNews((prev: News[]) => {
+    setNews((prev: News[]) => {
       let update = [...prev];
       update = update.map((news) => {
         if (news.id === id) return { ...news, name: result.name };
@@ -24,7 +24,7 @@ export const updateNews = async (id: number, { newNewsName, setNewNewsName, onCl
     });
 
 
-    setNewNewsName("");
+    setNewsNameValue("");
     onClose();
   } catch (error) {
     console.error(error);
