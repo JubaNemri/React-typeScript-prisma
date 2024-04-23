@@ -26,4 +26,4 @@ export interface Props_ForAddOrEditNewsModal {
     isOpen : boolean 
     onClose : () => void 
     editNews : News
-  }
+}

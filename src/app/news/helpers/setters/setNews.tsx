@@ -16,7 +16,6 @@ export const setNews = async ( {newNewsName , setNewNewsName , onClose, setMyNew
             update.push(result);
             return update;
         });
-        
   
     } catch (error){
         console.error(error)
